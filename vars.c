@@ -34,7 +34,6 @@ int is_chain(info_t *info, char *buf, size_t *p)
 	*p = j;
 	return (1);
 }
-
 /**
  * check_chain - checks we should continue chaining based on last status
  * @info: the parameter struct
@@ -65,10 +64,8 @@ void check_chain(info_t *info, char *buf, size_t *p, size_t i, size_t len)
 			j = len;
 		}
 	}
-
 	*p = j;
 }
-
 /**
  * replace_alias - replaces an aliases in the tokenized string
  * @info: the parameter struct
@@ -97,7 +94,6 @@ int replace_alias(info_t *info)
 	}
 	return (1);
 }
-
 /**
  * replace_vars - replaces vars in the tokenized string
  * @info: the parameter struct
@@ -107,13 +103,13 @@ int replace_alias(info_t *info)
 int replace_vars(info_t *info)
 {
 	int i = 0;
+
 	list_t *node;
 
 	for (i = 0; info->argv[i]; i++)
 	{
 		if (info->argv[i][0] != '$' || !info->argv[i][1])
 			continue;
-
 		if (!_strcmp(info->argv[i], "$?"))
 		{
 			replace_string(&(info->argv[i]),
@@ -134,11 +130,9 @@ int replace_vars(info_t *info)
 			continue;
 		}
 		replace_string(&info->argv[i], _strdup(""));
-
 	}
 	return (0);
 }
-
 /**
  * replace_string - replaces string
  * @old: address of old string
@@ -149,6 +143,8 @@ int replace_vars(info_t *info)
 int replace_string(char **old, char *new)
 {
 	free(*old);
+
 	*old = new;
+
 	return (1);
 }
